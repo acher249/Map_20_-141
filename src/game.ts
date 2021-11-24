@@ -69,6 +69,8 @@ class ElevatorSystem {
   }
 }
 
+// now do things with face
+
 // Add a new instance of the system to the engine
 let rotSystem = new RotatorSystem()
 engine.addSystem(rotSystem)
@@ -95,25 +97,43 @@ function spawnCube(x: number, y: number, z: number) {
 }
 
 /// --- Spawn a cube ---
-const rootEntity = new Entity()
-rootEntity.addComponent(new Transform({ position: new Vector3(8,0,8) })) // center
-engine.addEntity(rootEntity)
+const ElevatorRootEntity = new Entity()
+ElevatorRootEntity.addComponent(new Transform({ position: new Vector3(8,0,8) })) // center
+engine.addEntity(ElevatorRootEntity)
 
-// rootEntity.getComponent(Transform).scale = new Vector3(0,0,0)
+const SceneRootEntity = new Entity()
+SceneRootEntity.addComponent(new Transform({ position: new Vector3(8,0,8) })) // center
+engine.addEntity(SceneRootEntity)
+
+export class SimpleRotate implements ISystem {
+  update() {
+    let transform = faceEntity.getComponent(Transform)
+    transform.rotate(Vector3.Up(), 3)
+  }
+}
+
+engine.addSystem(new SimpleRotate())
+
+const faceEntity = new Entity();
+faceEntity.addComponent(new GLTFShape("models/face4.glb"));
+faceEntity.addComponent(new Transform());
+faceEntity.setParent(SceneRootEntity);
+
+// ----------------
 
 const cube = spawnCube(0, .5, 0)
 cube.getComponent(Transform).scale = new Vector3(3,.1,3)
 // tie this cube into the elevator system
-elevatorSystem.elevatorCube = rootEntity
+elevatorSystem.elevatorCube = ElevatorRootEntity
 
 // ------ Create Buttons -------- //
 const ElevtorUpDownButton = spawnCube(1, .5, 3)
 const ElevtorStopButton = spawnCube(2, .5, 3)
 
 // make everything in Elevator child to rootEntity, then move root entity, so that parent tranforms dont effect children
-cube.setParent(rootEntity)
-ElevtorUpDownButton.setParent(rootEntity)
-ElevtorStopButton.setParent(rootEntity)
+cube.setParent(ElevatorRootEntity)
+ElevtorUpDownButton.setParent(ElevatorRootEntity)
+ElevtorStopButton.setParent(ElevatorRootEntity)
 
 ElevtorUpDownButton.getComponent(Transform).scale = new Vector3(.4,.4,.4)
 ElevtorStopButton.getComponent(Transform).scale = new Vector3(.4,.4,.4)
@@ -132,19 +152,6 @@ GreenMaterial.roughness = 0.1
 //Assign the material to the entity
 ElevtorStopButton.addComponent(RedMaterial)
 ElevtorUpDownButton.addComponent(GreenMaterial)
-
-cube.addComponent(
-  new OnClick(() => {
-
-    // ajc do somthing
-    switchBool()
-
-    cube.getComponent(Transform).scale.z *= 1.1
-    cube.getComponent(Transform).scale.x *= 0.9
-
-    spawnCube(Math.random() * 8 + 1, Math.random() * 8, Math.random() * 8 + 1)
-  })
-)
 
 // tell elevator which way to go
 ElevtorUpDownButton.addComponent(
