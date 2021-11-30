@@ -105,19 +105,25 @@ const SceneRootEntity = new Entity()
 SceneRootEntity.addComponent(new Transform({ position: new Vector3(8,0,8) })) // center
 engine.addEntity(SceneRootEntity)
 
-export class SimpleRotate implements ISystem {
-  update() {
-    let transform = faceEntity.getComponent(Transform)
-    transform.rotate(Vector3.Up(), 3)
-  }
-}
+// export class SimpleRotate implements ISystem {
+//   update() {
+//     let transform = faceEntity.getComponent(Transform)
+//     transform.rotate(Vector3.Up(), 3)
+//   }
+// }
 
-engine.addSystem(new SimpleRotate())
+// engine.addSystem(new SimpleRotate())
 
-const faceEntity = new Entity();
-faceEntity.addComponent(new GLTFShape("models/face4.glb"));
-faceEntity.addComponent(new Transform());
-faceEntity.setParent(SceneRootEntity);
+const pav = new Entity();
+pav.addComponent(new GLTFShape("models/pav_12.glb"));
+pav.addComponent(new Transform({ position: new Vector3(0,0,0), scale: new Vector3(1,1,1) }));
+pav.setParent(SceneRootEntity);
+
+
+// const faceEntity = new Entity();
+// faceEntity.addComponent(new GLTFShape("models/face4.glb"));
+// faceEntity.addComponent(new Transform());
+// faceEntity.setParent(SceneRootEntity);
 
 // ----------------
 
