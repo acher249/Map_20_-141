@@ -115,7 +115,7 @@ engine.addEntity(SceneRootEntity)
 // engine.addSystem(new SimpleRotate())
 
 const pav = new Entity();
-pav.addComponent(new GLTFShape("models/pav_12.glb"));
+pav.addComponent(new GLTFShape("models/pav_13.glb"));
 pav.addComponent(new Transform({ position: new Vector3(0,0,0), scale: new Vector3(1,1,1) }));
 pav.setParent(SceneRootEntity);
 
