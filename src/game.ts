@@ -1,28 +1,28 @@
-import utils from '../node_modules/decentraland-ecs-utils/index'
+// import utils from '../node_modules/decentraland-ecs-utils/index'
 
 /// --- Set up a system ---
 
 // Systems hold functions that change the information that’s stored in components.
 // Systems are what make a static scene dynamic, allowing things to change over time or in response to player interaction.
-class RotatorSystem {
-  // this group will contain every entity that has a Transform component
-  group = engine.getComponentGroup(Transform)
+// class RotatorSystem {
+//   // this group will contain every entity that has a Transform component
+//   group = engine.getComponentGroup(Transform)
 
-  // ajc spin bool
-  spinBool = true
+//   // ajc spin bool
+//   spinBool = true
 
-  update(dt: number) {
-    // iterate over the entities of the group
-    for (let entity of this.group.entities) {
-      // get the Transform component of the entity
-      const transform = entity.getComponent(Transform)
+//   update(dt: number) {
+//     // iterate over the entities of the group
+//     for (let entity of this.group.entities) {
+//       // get the Transform component of the entity
+//       const transform = entity.getComponent(Transform)
 
-      // mutate the rotation
-      // transform.rotate(Vector3.Up(), dt * 10)
-    }
+//       // mutate the rotation
+//       // transform.rotate(Vector3.Up(), dt * 10)
+//     }
 
-  }
-}
+//   }
+// }
 
 //
 class ElevatorSystem {
@@ -72,8 +72,8 @@ class ElevatorSystem {
 // now do things with face
 
 // Add a new instance of the system to the engine
-let rotSystem = new RotatorSystem()
-engine.addSystem(rotSystem)
+// let rotSystem = new RotatorSystem()
+// engine.addSystem(rotSystem)
 
 let elevatorSystem = new ElevatorSystem()
 engine.addSystem(elevatorSystem)
@@ -191,13 +191,13 @@ ElevtorStopButton.addComponent(
 
 // create function that switches a boolean that is built into the main Rotator System 
 // then you can check against this on update
-function switchBool(){
+// function switchBool(){
 
-  // switch the bool on click
-  if (rotSystem.spinBool){
-    rotSystem.spinBool = false 
-  }else{
-    rotSystem.spinBool = true
-  }
+//   // switch the bool on click
+//   if (rotSystem.spinBool){
+//     rotSystem.spinBool = false 
+//   }else{
+//     rotSystem.spinBool = true
+//   }
 
-}
+// }
