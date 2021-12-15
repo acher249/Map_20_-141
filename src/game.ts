@@ -98,7 +98,7 @@ function spawnCube(x: number, y: number, z: number) {
 
 /// --- Spawn a cube ---
 const ElevatorRootEntity = new Entity()
-ElevatorRootEntity.addComponent(new Transform({ position: new Vector3(8,0,8) })) // center
+ElevatorRootEntity.addComponent(new Transform({ position: new Vector3(12,0,4) })) // center
 engine.addEntity(ElevatorRootEntity)
 
 const SceneRootEntity = new Entity()
@@ -115,7 +115,7 @@ engine.addEntity(SceneRootEntity)
 // engine.addSystem(new SimpleRotate())
 
 const pav = new Entity();
-pav.addComponent(new GLTFShape("models/pav_13.glb"));
+pav.addComponent(new GLTFShape("models/Pav_20.glb"));
 pav.addComponent(new Transform({ position: new Vector3(0,0,0), scale: new Vector3(1,1,1) }));
 pav.setParent(SceneRootEntity);
 
