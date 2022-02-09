@@ -1,5 +1,5 @@
 # Map_20_-141
-Decentraland Repo
+Decentraland SDK Repo
 
 
 - clone repo
